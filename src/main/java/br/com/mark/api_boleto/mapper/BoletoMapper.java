@@ -2,6 +2,7 @@ package br.com.mark.api_boleto.mapper;
 
 import br.com.mark.api_boleto.dto.BoletoDTO;
 import br.com.mark.api_boleto.entity.BoletoEntity;
+import br.com.mark.avro.Boleto;
 import org.springframework.stereotype.Component;
 
 
@@ -25,4 +26,12 @@ public class BoletoMapper {
                 .dataAtualizacao(boletoEntity.getDataAtualizacao())
                 .build();
     }
+
+    public static Boleto toAvro(BoletoEntity boletoEntity){
+        return Boleto.newBuilder().setCodigoBarras(boletoEntity.getCodigoBarras())
+                .setSituacaoBoleto(boletoEntity.getSituacaoBoleto().ordinal())
+                .build();
+    }
+
+
 }
